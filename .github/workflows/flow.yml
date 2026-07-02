@@ -1,0 +1,21 @@
+name: Condiciones
+
+on: [push, pull_request]
+
+jobs:
+  ejemplo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: detectar push con if
+        if: github.event_name == 'push'
+        run: echo "Ejecutando solo en push"
+
+      - name: detectar pull_request con if
+        if: github.event_name == 'pull_request'
+        run: echo "Ejecutando solo en PR"
+
+      - name: Otra forma
+        run: |
+          if [ "${{ github.event_name }}" == "push" ]; then
+            echo "Se detectó un push desde script bash"
+          fi
